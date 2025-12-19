@@ -64,5 +64,5 @@ Verktyget hanterar följande steg:
 
 3. Skickar tillbaka token och secret till `/api/flag` för att hämta flaggan.
  
-Skriptet inkluderar robust felhantering för nätverksfel och timeout.
+Skriptet inkluderar robust felhantering för nätverksfel och timeout. 
  

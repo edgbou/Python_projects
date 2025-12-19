@@ -33,12 +33,13 @@ def post_url(url, headers=None, data=None):
 if __name__ =="__main__":
     api_base = "http://10.3.10.104:3000"
 
+    # Steg 1: Hämta token
     token_response = post_url(api_base+"/api/token")
     if token_response and "token" in token_response:
         token_value = token_response["token"]
         print(f"\nToken: {token_value}")
 
-        # --- STEG 2: Verifiera ---
+        # Steg 2: Verifiera
         headers = {"Authorization": f"Bearer {token_value}"}
         verify_response = post_url(api_base + "/api/verify", headers=headers)
 
@@ -46,7 +47,7 @@ if __name__ =="__main__":
             secret_value = verify_response["secret"]
             print(f"Verifiering lyckades! Secret: {secret_value}")
 
-            # --- STEG 3: Skicka Flagga ---
+            #  Steg 3: Skicka Flagga
             payload = {"token": token_value, "secret": secret_value}
             flag_response = post_url(api_base + "/api/flag", headers=headers, data=payload)
 
