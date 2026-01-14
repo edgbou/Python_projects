@@ -1,15 +1,17 @@
 import argparse
 import sys
-from pathlib import Path
 
+# Skapar en c-array output 
 def c_array(data):
     hex_list = [f"0x{b:02x}" for b in data]
     return f"unsigned char buff[] = {{ {', '.join(hex_list)}}};"
 
+# Skapar en python-array/lista output
 def python_array(data):
     hex_list = [f"0x{b:02x}" for b in data]
     return f"shellcode = [{', '.join(hex_list)}]"
 
+#
 def xor_encrypt(data, key):
     output = bytearray()
     for i in range(len(data)):
@@ -17,12 +19,13 @@ def xor_encrypt(data, key):
     return bytes(output)
 
 
+# Huvudprogram med argparse
 def main():
     parser = argparse.ArgumentParser(description="XOR Encryptor for Shellcode")
 
     # Argument för användaren
     parser.add_argument("-i","--in_file", required=True, help="Input raw shellcode (.bin)")
-    parser.add_argument("-o","--out_file", required=True, help="Output file for encrypted shellcode")
+    parser.add_argument("-o","--out_file", required=False, help="Output file for encrypted shellcode")
     parser.add_argument("-k","--key", required=True, help="XOR key (e.g. 0x42 or secret)")
     parser.add_argument("-f","--format", choices=["raw", "python", "c"], default="raw")
 
@@ -33,8 +36,10 @@ def main():
         with open(args.in_file, "rb") as f:
             shellcode = f.read()
     except FileNotFoundError:
-        print(f"[-] Fel: Hittade inte filen {args.in_file}")
-    if args.key.startswith("x0"):
+        print(f"Fel: Hittade inte filen {args.in_file}")
+        sys.exit(1)
+
+    if args.key.startswith("0x"):
         key = [int(args.key, 16)]
     else:
         key = [ord(c) for c in args.key] # ord() hämtar en bokstavs ASCII-värde, XOR inte funkar på bokstäver
