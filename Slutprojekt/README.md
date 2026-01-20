@@ -70,3 +70,21 @@ Encrypted shellcode saved to encrypted.txt
 unsigned char buff[] = { 0x4a, 0x21, 0x01 };
 ----------------------------------------
 ```
+
+### Python Format (-f python)
+```text
+----------------------------------------
+Encrypted shellcode saved to encrypted.txt
+
+shellcode = [0x4a, 0x21, 0x01]
+----------------------------------------
+```
+
+### Raw Format (-f raw)
+```text
+----------------------------------------
+Encrypted shellcode saved to payload.enc
+
+b'\x4a\x21\x01...'
+----------------------------------------
+```
