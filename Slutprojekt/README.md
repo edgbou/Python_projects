@@ -43,15 +43,18 @@ Flag	Name	Required	Description
 ## Examples
 
 1. Encrypt and format for C
-```py Slutprojekt.py -i beacon.bin -k MySecretKey -f c -o encrypted.txt
+```bash
+py Slutprojekt.py -i beacon.bin -k MySecretKey -f c -o encrypted.txt
 ```
 
 2. Encrypt using a Hex key and output to Python
-```py Slutprojekt.py -i shell.bin -k 0xAA -f python
+```bash
+py Slutprojekt.py -i shell.bin -k 0xAA -f python
 ```
 
 3. Generate raw encrypted binary
-```py Slutprojekt.py -i payload.bin -k 0x55 -f raw -o payload.enc
+```bash
+py Slutprojekt.py -i payload.bin -k 0x55 -f raw -o payload.enc
 ```
 
 Technical Details
