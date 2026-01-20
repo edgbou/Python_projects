@@ -1,6 +1,6 @@
 # Shellcode XOR Encryptor
 
-A lightweight Python utility designed to encrypt raw binary data (shellcode) using the XOR algorithm. It automatically formats the output into ready-to-use arrays for **C** or **Python** projects, or exports it as a raw binary file.
+A lightweight Python utility designed to encrypt raw binary data (shellcode) using XOR. It automatically formats the output into arrays for **C** or **Python** projects, or exports it as a raw binary file.
 
 
 
@@ -31,23 +31,39 @@ The script uses command-line arguments to handle input and output.
 
 ### Basic Syntax
 ```bash
-python Slutprojekt.py -i <input_file> (-o <output_file>) -k <key> -f <format> [options]
+py Slutprojekt.py -i <input_file> [-o <output_file>] -k <key> -f <format> [options]
 
 Flag	Name	Required	Description
 -i	--in_file	Yes	        Path to the raw binary input file (.bin).
 -o	--out_file	No	        Path to save the result. If omitted, result prints to terminal.
 -k	--key	    Yes	        XOR key (e.g., secret or 0x42).
 -f	--format	No	        raw (default), python, or c.
+```
 
-Examples
+## Examples
+
 1. Encrypt and format for C
-python Slutprojekt.py -i beacon.bin -k MySecretKey -f c -o encrypted.txt
+```py Slutprojekt.py -i beacon.bin -k MySecretKey -f c -o encrypted.txt
+```
 
 2. Encrypt using a Hex key and output to Python
-python Slutprojekt.py -i shell.bin -k 0xAA -f python
+```py Slutprojekt.py -i shell.bin -k 0xAA -f python
+```
 
 3. Generate raw encrypted binary
-python Slutprojekt.py -i payload.bin -k 0x55 -f raw -o payload.enc
+```py Slutprojekt.py -i payload.bin -k 0x55 -f raw -o payload.enc
+```
 
 Technical Details
 The encryption follows the cyclic XOR principle. This ensures that even if your key is only 1 byte long, it can encrypt a file of any size by repeating the key pattern.
+
+## Output Examples
+
+### C Format (-f c)
+```text
+----------------------------------------
+Encrypted shellcode saved to encrypted.txt
+
+unsigned char buff[] = { 0x4a, 0x21, 0x01 };
+----------------------------------------
+```

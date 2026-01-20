@@ -10,7 +10,7 @@ Functions:
     - Export to Python-list format.
 
 Usage:
-    python Slutprojekt.py -i input.bin [-o output.bin] -k secret -f python
+    py Slutprojekt.py -i input.bin [-o output.bin] -k secret -f python
 """
 import argparse
 import sys
@@ -27,7 +27,7 @@ def python_array(data):
     hex_list = [f"0x{b:02x}" for b in data]
     return f"shellcode = [{', '.join(hex_list)}]"
 
-# Performs XOR encryption/decryption with a repeating key 
+# Performs XOR encryption/decryption with a repeating key
 def xor_encrypt(data, key):
     """
     Applies XOR encryption to the input data using a repeating key.
